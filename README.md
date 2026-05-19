@@ -22,6 +22,7 @@
 | `k-studio-technical` | 设备、焦段、光圈 | ✅ 使用kiss分析设备参数 |
 | `k-studio-texture` | 成像质感、颗粒、锐度 | ✅ 使用kiss反推成像质感 |
 | `k-studio-lighting` | 光影、光源、光质 | ✅ 使用kiss分析光影 |
+| `k-studio-color` | 色调、调色、滤镜、胶片风格 | ✅ 使用kiss分析色调 |
 | `k-studio-framing` | 构图、景别、裁切 | ✅ 使用kiss分析构图 |
 | `k-studio-action` | 动作姿态、表情神态 | ✅ 使用kiss反推动作 |
 
@@ -44,8 +45,9 @@ kiss（主入口，判断输出模式）
   ├─ 5. k-studio-technical（设备、焦段、光圈）
   ├─ 6. k-studio-texture（成像质感、颗粒、锐度）
   ├─ 7. k-studio-lighting（光影、光源、光质）
-  ├─ 8. k-studio-framing（构图、景别、裁切）
-  └─ 9. k-studio-action（动作姿态、表情神态）
+  ├─ 8. k-studio-color（色调、调色、滤镜、胶片风格）
+  ├─ 9. k-studio-framing（构图、景别、裁切）
+  ├─ 10. k-studio-action（动作姿态、表情神态）
       │
       └─ 输出 → 直出模式（默认） / 精简模式（compact）
 ```

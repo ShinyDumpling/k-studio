@@ -1,6 +1,6 @@
 ---
 name: kiss
-description: 作为 K-Studio 的 Production 主入口，按固定顺序调度 k-studio-style、k-studio-subject、k-studio-clothing、k-studio-environment、k-studio-technical、k-studio-texture、k-studio-lighting、k-studio-framing、k-studio-action，输出中文 AI 写真提示词。支持直出模式（按维度输出模块原始结果）和精简模式（调用 k-studio-compact 压缩为一段约 800 字的精简提示词）。适用于用户要求完整提示词、反推图片提示词、根据参考图还原 prompt、整合参考图生成可直接用于 AI 生图的提示词，或要求查看各模块原始分析结果的场景。当用户明确要求小红书标题、写真取名、笔记标题、小红书文案或发小红书时，可在提示词流程完成后可选调用 k-studio-xhs-post。动作姿态模块同时承接表情神态维度。
+description: 作为 K-Studio 的 Production 主入口，按固定顺序调度 k-studio-style、k-studio-subject、k-studio-clothing、k-studio-environment、k-studio-technical、k-studio-texture、k-studio-lighting、k-studio-color、k-studio-framing、k-studio-action，输出中文 AI 写真提示词。支持直出模式（按维度输出模块原始结果）和精简模式（调用 k-studio-compact 压缩为一段约 800 字的精简提示词）。适用于用户要求完整提示词、反推图片提示词、根据参考图还原 prompt、整合参考图生成可直接用于 AI 生图的提示词，或要求查看各模块原始分析结果的场景。当用户明确要求小红书标题、写真取名、笔记标题、小红书文案或发小红书时，可在提示词流程完成后可选调用 k-studio-xhs-post。动作姿态模块同时承接表情神态维度。
 ---
 
 # Kiss
@@ -32,14 +32,16 @@ description: 作为 K-Studio 的 Production 主入口，按固定顺序调度 k-
    提取胶片颗粒、数码噪点、CCD、拍立得、锐度、清晰度、冲扫与成像表面质感；不提取设备参数。
 7. 调用 `k-studio-lighting`
    提取光源类型、来光方向、光质、明暗对比、阴影形态、高光位置、色温与氛围性光效；不提取环境内容、镜头构图或设备参数。
-8. 调用 `k-studio-framing`
+8. 调用 `k-studio-color`
+   提取后期调色特征：色温基调、色调分离、饱和度与褪色、对比度、肤色偏移、色彩分布、暗角柔光与滤镜/胶片风格；不分析光源类型与来光方向、不分析设备参数、不分析整体风格定性、不分析成像质感。
+9. 调用 `k-studio-framing`
    提取拍摄角度、构图方式、主体画面位置、景别、裁切、留白、前景遮挡、焦点位置、景深与运动模糊；不提取设备参数、焦段或光圈。
-9. 调用 `k-studio-action`
+10. 调用 `k-studio-action`
    提取动作姿态、肢体结构、身体朝向、重心、手势、视线方向、表情神态与身体接触关系。
-10. 可选调用 `k-studio-xhs-post`
+11. 可选调用 `k-studio-xhs-post`
     仅当用户明确要求小红书标题、写真取名、笔记标题、小红书文案、发小红书或类似发布包装需求时执行。该模块永远放在提示词生成流程最后，使用最终提示词与可用图片上下文生成小红书标题和短文案。
-11. 判断输出模式
-    如果用户明确要求"精简模式""摘要模式""汇总输出"或类似关键词，则在步骤 1-9 完成后调用 `k-studio-compact`，输出压缩后的精简提示词，跳过步骤 10；否则按直出模式直接输出步骤 1-9 的原始模块结果，再按需执行步骤 10。
+12. 判断输出模式
+    如果用户明确要求"精简模式""摘要模式""汇总输出"或类似关键词，则在步骤 1-10 完成后调用 `k-studio-compact`，输出压缩后的精简提示词，跳过步骤 11；否则按直出模式直接输出步骤 1-10 的原始模块结果，再按需执行步骤 11。
 
 调用顺序必须保持稳定。可逐图输出的模块（lighting / framing / action）固定放在后段，先完成主体与环境等全局特征分析。
 

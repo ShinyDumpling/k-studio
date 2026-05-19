@@ -1,0 +1,6 @@
+interface:
+  display_name: "K-Studio Color"
+  short_description: "Analyze color grading, tone, and filter style from reference images"
+  default_prompt: "Use $k-studio-color to help with this K-Studio color analysis task."
+policy:
+  allow_implicit_invocation: true
