@@ -1,0 +1,6 @@
+interface:
+  display_name: "K-Studio Preview"
+  short_description: "Merge module outputs into a single series prompt with variation ranges"
+  default_prompt: "Use $k-studio-preview to help with this K-Studio preview mode task."
+policy:
+  allow_implicit_invocation: true

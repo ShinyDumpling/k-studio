@@ -1,0 +1,6 @@
+interface:
+  display_name: "K-Studio Max"
+  short_description: "Output per-image full details, keep each image's independent differences"
+  default_prompt: "Use $k-studio-max to help with this K-Studio full-output mode task."
+policy:
+  allow_implicit_invocation: true
